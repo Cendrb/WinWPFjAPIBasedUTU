@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UTUClient"
         mc:Ignorable="d"
-        Title="Událost" Height="237.816" Width="397.479">
-    <Grid>
+        Title="Událost" Height="252.471" Width="396.813">
+    <StackPanel>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Text="{Binding Title}"/>
-        <TextBlock Margin="10,39,10,0" TextWrapping="Wrap" Text="{Binding Description}" Height="47" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Location}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Date}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Pay}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Group}"/>
-    </Grid>
+        <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Location}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Date}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Pay}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Group}"/>
+    </StackPanel>
 </Window>

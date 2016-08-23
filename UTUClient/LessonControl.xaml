@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UTUClient"
              mc:Ignorable="d" 
-             d:DesignHeight="70" d:DesignWidth="60" BorderBrush="#FF8F8F8F" BorderThickness="1">
+             d:DesignHeight="70" d:DesignWidth="60" BorderBrush="#000" BorderThickness="1">
     <Grid>
         <TextBlock x:Name="subjectView" HorizontalAlignment="Center" Margin="0,0,0,10" Text="TextBlock" VerticalAlignment="Center" FontSize="16"/>
         <TextBlock x:Name="teacherView" HorizontalAlignment="Right" Margin="0,0,4,4" Text="TextBlock" VerticalAlignment="Bottom" TextAlignment="Right"/>

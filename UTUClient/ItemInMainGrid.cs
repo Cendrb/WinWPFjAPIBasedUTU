@@ -41,8 +41,12 @@ namespace UTUClient
         public ItemInMainGrid()
         {
             HorizontalAlignment = HorizontalAlignment.Stretch;
-            MouseEnter += (e, a) => Background = new SolidColorBrush(Colors.AliceBlue);
+            MouseEnter += (e, a) => {
+                Background = new SolidColorBrush(Colors.AliceBlue);
+                
+            };
             MouseLeave += (e, a) => Background = new SolidColorBrush(Colors.White);
+            Margin = new Thickness(5);
 
             left = new TextBlock();
             Children.Add(left);

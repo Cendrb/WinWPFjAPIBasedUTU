@@ -5,21 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UTUClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="489.916" Width="677.311">
+        Title="UTU" Height="489.916" Width="677.311">
     <Grid x:Name="mainGridView">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="33*"/>
             <ColumnDefinition Width="33*"/>
             <ColumnDefinition Width="33*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel x:Name="eventsColumnView" Grid.Column="0" Margin="10,40,10,20"></StackPanel>
-        <StackPanel x:Name="examsColumnView" Grid.Column="1" Margin="10,40,10,20"></StackPanel>
-        <StackPanel x:Name="tasksColumnView" Grid.Column="2" Margin="10,40,10,20"></StackPanel>
+        <GroupBox Grid.Column="0" Margin="10,40,0,20">
+            <StackPanel x:Name="eventsColumnView" Margin="5">
+
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Margin="10,40,0,20" >
+            <StackPanel x:Name="examsColumnView" Margin="5"></StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="2" Margin="10,40,10,20">
+            <StackPanel x:Name="tasksColumnView" Margin="5"></StackPanel>
+        </GroupBox>
 
         <StatusBar x:Name="statusBarView" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="20" Grid.ColumnSpan="3"/>
         <Label Content="Události" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Testy" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" FontSize="16" Grid.Column="1"/>
         <Label Content="Úkoly" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" FontSize="16" Grid.Column="2"/>
-        <Button x:Name="button" Content="Rozvrh..." Grid.Column="2" HorizontalAlignment="Left" Margin="138,4,0,0" VerticalAlignment="Top" Width="75" Click="rozvrhToggle"/>
+        <Button x:Name="button" Content="Rozvrh..." Grid.Column="2" Margin="0,4,10,0" VerticalAlignment="Top" Click="rozvrhToggle" HorizontalAlignment="Right" Width="75"/>
     </Grid>
 </Window>

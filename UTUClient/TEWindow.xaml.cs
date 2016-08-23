@@ -22,14 +22,14 @@ namespace UTUClient
     {
         public TEWindow(TEItem toBeShowed)
         {
+            DataContext = new TEModelView(toBeShowed);
+
+            InitializeComponent();
+
             if (toBeShowed is Exam)
                 Title = "Test";
             else
                 Title = "Úkol";
-
-            DataContext = new TEModelView(toBeShowed);
-
-            InitializeComponent();
         }
     }
 }

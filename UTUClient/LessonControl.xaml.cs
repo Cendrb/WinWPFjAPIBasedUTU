@@ -21,14 +21,17 @@ namespace UTUClient
     /// </summary>
     public partial class LessonControl : UserControl
     {
-        public LessonControl(Lesson lesson)
+        public LessonControl(Lesson lesson, bool leftBorder, bool topBorder)
         {
             InitializeComponent();
 
+
+            BorderThickness = new Thickness(leftBorder ? 1 : 0, topBorder ? 1 : 0, 1, 1);
+
             if (lesson.isNotNormal())
-                Background = new SolidColorBrush(Colors.Red);
+                Background = new SolidColorBrush(Color.FromRgb(237, 80, 80));
             else
-                Background = new SolidColorBrush(Colors.Yellow);
+                Background = new SolidColorBrush(Color.FromRgb(237, 159, 80));
 
             subjectView.Text = lesson.getSubject().getName();
             roomView.Text = lesson.getRoom();

@@ -58,7 +58,7 @@ namespace UTUClient
             foreach (com.farast.utuapi.data.Task ta in loader.getTasksList().toIEnumerable<com.farast.utuapi.data.Task>())
                 addItem(ta, 2);
 
-            timetableWindow = new TimetableWindow((Timetable)loader.getTimetablesList().get(0));
+            timetableWindow = new TimetableWindow();
         }
 
 

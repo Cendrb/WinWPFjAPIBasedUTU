@@ -21,35 +21,74 @@ namespace UTUClient
     /// </summary>
     public partial class TimetableWindow : Window
     {
-        public TimetableWindow(Timetable timetable)
+        public TimetableWindow()
         {
             InitializeComponent();
 
-            int totalLessonsPerDay = 9;
-            for (int i = 0; i < totalLessonsPerDay + 1; i++)
-                mainGridView.ColumnDefinitions.Add(new ColumnDefinition());
-            int rowIndex = 0;
-            foreach(SchoolDay day in timetable.getSchoolDays().toIEnumerable<SchoolDay>())
-            {
-                mainGridView.RowDefinitions.Add(new RowDefinition());
-
-                TextBlock dateBlock = new TextBlock();
-                dateBlock.VerticalAlignment = VerticalAlignment.Center;
-                dateBlock.Text = DateUtil.CZ_WEEK_DATE_FORMAT.format(day.getDate());
-                setLessonAt(0, rowIndex, dateBlock);
-                foreach(Lesson lesson in day.getLessons().toIEnumerable<Lesson>())
-                {
-                    setLessonAt(lesson.getSerialNumber(), rowIndex, new LessonControl(lesson));
-                }
-                rowIndex++;
-            }
+            reload();
         }
 
-        private void setLessonAt(int x, int y, UIElement element)
+        private void setElementAt(int x, int y, UIElement element, Grid grid)
         {
             Grid.SetColumn(element, x);
             Grid.SetRow(element, y);
-            mainGridView.Children.Add(element);
+            grid.Children.Add(element);
+        }
+
+        private void reload()
+        {
+            tabControl.Items.Clear();
+
+            IEnumerable<Timetable> timetables = Static.loader.getTimetablesList().toIEnumerable<Timetable>();
+            foreach (Timetable timetable in timetables)
+            {
+                TabItem tabItem = new TabItem();
+                tabItem.Header = timetable.getName();
+
+                Grid mainGridView = new Grid();
+                mainGridView.Margin = new Thickness(10, 10, 10, 10);
+
+                int totalLessonsPerDay = 9;
+
+                ColumnDefinition dateColumnDef = new ColumnDefinition();
+                dateColumnDef.MinWidth = 70;
+                mainGridView.ColumnDefinitions.Add(dateColumnDef);
+
+                for (int i = 0; i < totalLessonsPerDay; i++)
+                    mainGridView.ColumnDefinitions.Add(new ColumnDefinition());
+
+                int rowIndex = 0;
+                foreach (SchoolDay day in timetable.getSchoolDays().toIEnumerable<SchoolDay>())
+                {
+                    bool[] lessonsInserted = new bool[totalLessonsPerDay];
+
+                    mainGridView.RowDefinitions.Add(new RowDefinition());
+
+                    TextBlock dateBlock = new TextBlock();
+                    dateBlock.VerticalAlignment = VerticalAlignment.Center;
+                    dateBlock.Text = DateUtil.CZ_WEEK_DATE_FORMAT.format(day.getDate());
+                    setElementAt(0, rowIndex, dateBlock, mainGridView);
+                    foreach (Lesson lesson in day.getLessons().toIEnumerable<Lesson>())
+                    {
+                        lessonsInserted[lesson.getSerialNumber() - 1] = true;
+                        setElementAt(lesson.getSerialNumber(), rowIndex, new LessonControl(lesson, lesson.getSerialNumber() == 1, rowIndex == 0), mainGridView);
+                    }
+
+                    for (int index = 0; index < lessonsInserted.Length; index++)
+                        if (!lessonsInserted[index])
+                        {
+                            Border border = new Border();
+                            border.Background = new SolidColorBrush(Colors.White);
+                            border.BorderThickness = new Thickness(index == 0 ? 1 : 0, rowIndex == 0 ? 1 : 0, 1, 1);
+                            border.BorderBrush = new SolidColorBrush(Colors.Black);
+                            setElementAt(index + 1, rowIndex, border, mainGridView);
+                        }
+                    rowIndex++;
+                }
+
+                tabItem.Content = mainGridView;
+                tabControl.Items.Add(tabItem);
+            }
         }
     }
 }
