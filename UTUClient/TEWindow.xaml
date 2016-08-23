@@ -1,0 +1,16 @@
+﻿<Window x:Class="UTUClient.TEWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UTUClient"
+        mc:Ignorable="d"
+        Title="TEWindow" Height="300" Width="300">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Text="{Binding Title}"/>
+        <TextBlock Margin="10,39,10,0" TextWrapping="Wrap" Text="{Binding Description}" Height="47" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Subject}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Date}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Group}"/>
+    </Grid>
+</Window>

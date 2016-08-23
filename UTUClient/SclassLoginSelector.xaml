@@ -1,0 +1,24 @@
+﻿<Window x:Class="UTUClient.SclassLoginSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UTUClient"
+        mc:Ignorable="d" 
+        Title="UTU" Height="285.505" Width="309.471" ResizeMode="NoResize">
+    <Grid>
+        <Grid>
+            <Label Content="Email" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="emailText" Margin="86,37,10,0" VerticalAlignment="Top" Height="26" />
+            <Label Content="Heslo" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+            <PasswordBox x:Name="passwordText" Margin="86,68,10,0" VerticalAlignment="Top" Height="26" />
+            <Button x:Name="loginButton" Content="PŘIHLÁSIT SE" Margin="10,104,10,0" VerticalAlignment="Top" Height="28" Click="loginButton_Click"/>
+            <Label Content="Přihlášení" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="18"/>
+            <Label Content="Bez přihlášení" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" FontSize="18"/>
+            <ComboBox x:Name="sclassesListBox" Height="22" Margin="10,186,10,0" VerticalAlignment="Top"/>
+            <Button x:Name="loadSclassButton" Content="NAHRÁT DATA" Margin="10,213,10,0" Height="28" VerticalAlignment="Top" Click="loadSclassButton_Click"/>
+        </Grid>
+        <Rectangle x:Name="waitRect" Fill="White" Opacity="0.9"/>
+        <TextBlock x:Name="waitTextBlock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" />
+    </Grid>
+</Window>
