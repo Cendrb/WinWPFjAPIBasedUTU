@@ -8,7 +8,7 @@
         Title="Událost" Height="252.471" Width="396.813">
     <StackPanel>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Text="{Binding Title}"/>
-        <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top"/>
+        <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" TextAlignment="Justify"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Location}"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Date}"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Pay}"/>

@@ -24,10 +24,7 @@ namespace UTUClient
         public TimetableWindow()
         {
             InitializeComponent();
-
-            reload();
         }
-
         private void setElementAt(int x, int y, UIElement element, Grid grid)
         {
             Grid.SetColumn(element, x);
@@ -35,7 +32,7 @@ namespace UTUClient
             grid.Children.Add(element);
         }
 
-        private void reload()
+        public void ReloadData()
         {
             tabControl.Items.Clear();
 

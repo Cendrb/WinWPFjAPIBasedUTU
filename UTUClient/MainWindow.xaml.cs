@@ -38,27 +38,69 @@ namespace UTUClient
 
             InitializeComponent();
 
+            Closed += mainWindowClosed;
+
             Static.loader.getOperationManager().setOperationListener(new OperationListenerClass(statusBarView));
+
+            timetableWindow = new TimetableWindow();
+            timetableWindow.Closing += timetableWindowClosing;
 
             loadData();
         }
 
+        private void mainWindowClosed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void refreshClick(object sender, RoutedEventArgs e)
+        {
+            loadData();
+        }
+
+        private void timetableWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            timetableWindow.Hide();
+            timetableUp = false;
+        }
+
         public async void loadData()
         {
-            DataLoader loader = Static.loader;
+            refreshButton.IsEnabled = false;
 
-            await System.Threading.Tasks.Task.Run(() => loader.load(sclass));
+            try
+            {
 
-            foreach (Event ev in loader.getEventsList().toIEnumerable<Event>())
-                addEvent(ev);
+                DataLoader loader = Static.loader;
 
-            foreach (Exam ex in loader.getExamsList().toIEnumerable<Exam>())
-                addItem(ex, 1);
+                await System.Threading.Tasks.Task.Run(() => loader.load(sclass));
 
-            foreach (com.farast.utuapi.data.Task ta in loader.getTasksList().toIEnumerable<com.farast.utuapi.data.Task>())
-                addItem(ta, 2);
+                eventsColumnView.Children.Clear();
+                examsColumnView.Children.Clear();
+                tasksColumnView.Children.Clear();
 
-            timetableWindow = new TimetableWindow();
+                foreach (Event ev in loader.getEventsList().toIEnumerable<Event>())
+                    addEvent(ev);
+
+                foreach (Exam ex in loader.getExamsList().toIEnumerable<Exam>())
+                    addItem(ex, 1);
+
+                foreach (com.farast.utuapi.data.Task ta in loader.getTasksList().toIEnumerable<com.farast.utuapi.data.Task>())
+                    addItem(ta, 2);
+
+                timetableWindow.ReloadData();
+            }
+            catch (Exception)
+            {
+                MessageBoxResult result = MessageBox.Show("Nepodařilo se připojit k serveru. Zkusit znovu?", "Chyba při stahování dat", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.No);
+                if (result == MessageBoxResult.Yes)
+                    loadData();
+            }
+            finally
+            {
+                refreshButton.IsEnabled = true;
+            }
         }
 
 

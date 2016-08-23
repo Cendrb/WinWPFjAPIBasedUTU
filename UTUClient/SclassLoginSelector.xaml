@@ -11,7 +11,7 @@
             <Label Content="Email" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="emailText" Margin="86,37,10,0" VerticalAlignment="Top" Height="26" />
             <Label Content="Heslo" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
-            <PasswordBox x:Name="passwordText" Margin="86,68,10,0" VerticalAlignment="Top" Height="26" />
+            <PasswordBox x:Name="passwordText" Margin="86,68,10,0" VerticalAlignment="Top" Height="26" KeyDown="passwordText_KeyDown" />
             <Button x:Name="loginButton" Content="PŘIHLÁSIT SE" Margin="10,104,10,0" VerticalAlignment="Top" Height="28" Click="loginButton_Click"/>
             <Label Content="Podle uživatele" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="18"/>
             <Label Content="Podle třídy" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" FontSize="18"/>

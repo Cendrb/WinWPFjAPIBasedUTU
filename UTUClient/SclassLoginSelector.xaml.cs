@@ -49,7 +49,7 @@ namespace UTUClient
             }
         }
 
-        private async System.Threading.Tasks.Task loadPredataAsync()
+        private async void loadPredataAsync()
         {
             showProgress(true, "Stahování tříd...");
             try
@@ -82,7 +82,7 @@ namespace UTUClient
                 launchMainWindow((Sclass)sclassesListBox.SelectedItem);
         }
 
-        private async void loginButton_Click(object sender, RoutedEventArgs e)
+        private async void login()
         {
             showProgress(true, "Přihlašování..");
 
@@ -92,8 +92,6 @@ namespace UTUClient
                 String password = passwordText.Password;
 
                 bool successfulLogin = await System.Threading.Tasks.Task.Run<Boolean>(() => Static.loader.login(email, password));
-
-
 
                 if (successfulLogin)
                 {
@@ -110,7 +108,7 @@ namespace UTUClient
             {
                 MessageBoxResult result = MessageBox.Show("Nepodařilo se připojit k serveru. Zkusit znovu?", "Chyba při přihlašování", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.No);
                 if (result == MessageBoxResult.Yes)
-                    loginButton_Click(sender, e);
+                    login();
                 else
                     Application.Current.Shutdown();
             }
@@ -120,11 +118,22 @@ namespace UTUClient
             }
         }
 
+        private void loginButton_Click(object sender, RoutedEventArgs e)
+        {
+            login();
+        }
+
         private void launchMainWindow(Sclass sclass)
         {
             MainWindow window = new MainWindow(sclass);
             window.Show();
             Close();
+        }
+
+        private void passwordText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                login();
         }
     }
 }
